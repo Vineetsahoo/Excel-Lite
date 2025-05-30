@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Lite | Spreadsheet App</title>
+    <!-- Add manifest.json link -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Add theme color for browser UI -->
+    <meta name="theme-color" content="#217346">
+    <!-- Add Apple touch icon for iOS - use an icon we know exists -->
+    <link rel="apple-touch-icon" href="icons/icon-72x72.png">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icons/icon-72x72.png">
+</head>
+<body>
+    <!-- Remove loading indicator -->
+    <!-- <div class="app-loading" id="app-loading">
+        <div class="spinner"></div>
+    </div> -->
+
+    <div id="app">
+        <header>
+            <div class="logo-container">
+                <i class="fas fa-table-cells logo-icon"></i>
+                <h1>Excel Lite</h1>
+            </div>
+            <div class="header-actions">
+                <button id="import-csv" class="button">
+                    <i class="fas fa-file-import"></i> Import
+                </button>
+                <button id="export-csv" class="button">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+                <div id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle dark mode"></div>
+            </div>
+        </header>
+        
+        <div class="ribbon-tabs">
+            <div class="ribbon-tab active">Home</div>
+            <div class="ribbon-tab">Insert</div>
+            <div class="ribbon-tab">Data</div>
+            <div class="ribbon-tab">View</div>
+        </div>
+        
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <div class="toolbar-dropdown">
+                    <i class="fas fa-font"></i>
+                    <span>Calibri</span>
+                    <i class="fas fa-caret-down"></i>
+                    <div class="dropdown-content font-dropdown">
+                        <div class="dropdown-item font-option">Arial</div>
+                        <div class="dropdown-item font-option">Calibri</div>
+                        <div class="dropdown-item font-option">Times New Roman</div>
+                        <div class="dropdown-item font-option">Verdana</div>
+                        <div class="dropdown-item font-option">Courier New</div>
+                    </div>
+                </div>
+                <div class="toolbar-dropdown">
+                    <span>11</span>
+                    <i class="fas fa-caret-down"></i>
+                    <div class="dropdown-content font-size-dropdown">
+                        <div class="dropdown-item font-size-option">8</div>
+                        <div class="dropdown-item font-size-option">9</div>
+                        <div class="dropdown-item font-size-option">10</div>
+                        <div class="dropdown-item font-size-option">11</div>
+                        <div class="dropdown-item font-size-option">12</div>
+                        <div class="dropdown-item font-size-option">14</div>
+                        <div class="dropdown-item font-size-option">16</div>
+                        <div class="dropdown-item font-size-option">18</div>
+                    </div>
+                </div>
+            </div>
+            <div class="toolbar-group">
+                <button class="button-icon" id="bold-button" title="Bold"><i class="fas fa-bold"></i></button>
+                <button class="button-icon" id="italic-button" title="Italic"><i class="fas fa-italic"></i></button>
+                <button class="button-icon" id="underline-button" title="Underline"><i class="fas fa-underline"></i></button>
+            </div>
+            <div class="toolbar-group">
+                <button class="button-icon" title="Text Color">
+                    <i class="fas fa-font" style="color: var(--primary-color);"></i>
+                    <span class="color-indicator"></span>
+                    <div class="color-dropdown text-color-dropdown">
+                        <div class="color-option" style="background-color: #000000;"></div>
+                        <div class="color-option" style="background-color: #7F7F7F;"></div>
+                        <div class="color-option" style="background-color: #A80000;"></div>
+                        <div class="color-option" style="background-color: #217346;"></div>
+                        <div class="color-option" style="background-color: #2B579A;"></div>
+                        <div class="color-option" style="background-color: #4472C4;"></div>
+                        <div class="color-option" style="background-color: #70AD47;"></div>
+                        <div class="color-option" style="background-color: #FFC000;"></div>
+                        <div class="color-option" style="background-color: #ED7D31;"></div>
+                        <div class="color-option" style="background-color: #5B9BD5;"></div>
+                    </div>
+                </button>
+                <button class="button-icon" title="Fill Color">
+                    <i class="fas fa-fill-drip" style="color: #FFFF00;"></i>
+                    <div class="color-dropdown fill-color-dropdown">
+                        <div class="color-option" style="background-color: transparent;"></div>
+                        <div class="color-option" style="background-color: #FFF2CC;"></div>
+                        <div class="color-option" style="background-color: #E2EFDA;"></div>
+                        <div class="color-option" style="background-color: #DDEBF7;"></div>
+                        <div class="color-option" style="background-color: #FCE4D6;"></div>
+                        <div class="color-option" style="background-color: #FFF2CC;"></div>
+                        <div class="color-option" style="background-color: #E2EFDA;"></div>
+                        <div class="color-option" style="background-color: #DDEBF7;"></div>
+                        <div class="color-option" style="background-color: #FCE4D6;"></div>
+                        <div class="color-option" style="background-color: #FFF2CC;"></div>
+                    </div>
+                </button>
+            </div>
+            <div class="toolbar-group">
+                <button class="button-icon" id="align-left" title="Align Left"><i class="fas fa-align-left"></i></button>
+                <button class="button-icon" id="align-center" title="Align Center"><i class="fas fa-align-center"></i></button>
+                <button class="button-icon" id="align-right" title="Align Right"><i class="fas fa-align-right"></i></button>
+            </div>
+            <div class="toolbar-group">
+                <button class="button-icon with-text" id="merge-cells" title="Merge Cells">
+                    <i class="fas fa-table-cells-large"></i>
+                    <span>Merge</span>
+                </button>
+            </div>
+            <div class="toolbar-group">
+                <button class="button-icon with-text" id="number-format" title="Number Format">
+                    <i class="fas fa-percentage"></i>
+                    <span>Format</span>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+            </div>
+            <div class="toolbar-group">
+                <button id="add-row" class="button-icon with-text" title="Add Row">
+                    <i class="fas fa-plus"></i>
+                    <span>Row</span>
+                </button>
+                <button id="add-column" class="button-icon with-text" title="Add Column">
+                    <i class="fas fa-plus"></i>
+                    <span>Column</span>
+                </button>
+                <button id="delete-row" class="button-icon with-text" title="Delete Row">
+                    <i class="fas fa-minus"></i>
+                    <span>Row</span>
+                </button>
+                <button id="delete-column" class="button-icon with-text" title="Delete Column">
+                    <i class="fas fa-minus"></i>
+                    <span>Column</span>
+                </button>
+            </div>
+            <div class="toolbar-group">
+                <button id="undo" class="button-icon" title="Undo (Ctrl+Z)"><i class="fas fa-undo"></i></button>
+                <button id="redo" class="button-icon" title="Redo (Ctrl+Y)"><i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+        
+        <div class="formula-bar">
+            <div class="cell-address" id="active-cell">A1</div>
+            <div class="fx-label">fx</div>
+            <input type="text" id="formula-input" class="formula-input" placeholder="Enter formula or data...">
+            <button class="button-icon" title="Function Wizard"><i class="fas fa-function"></i></button>
+        </div>
+        
+        <main>
+            <div id="spreadsheet-container">
+                <table id="spreadsheet">
+                    <thead>
+                        <tr id="header-row">
+                            <th class="corner-header"></th>
+                            <!-- Column headers will be dynamically added -->
+                        </tr>
+                    </thead>
+                    <tbody id="data-rows">
+                        <!-- Rows will be dynamically added -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="context-menu" class="context-menu">
+                <div class="context-menu-item" data-action="cut"><i class="fas fa-cut"></i> Cut</div>
+                <div class="context-menu-item" data-action="copy"><i class="fas fa-copy"></i> Copy</div>
+                <div class="context-menu-item" data-action="paste"><i class="fas fa-paste"></i> Paste</div>
+                <div class="context-menu-divider"></div>
+                <div class="context-menu-item" data-action="insert-row"><i class="fas fa-plus"></i> Insert Row</div>
+                <div class="context-menu-item" data-action="insert-column"><i class="fas fa-plus"></i> Insert Column</div>
+                <div class="context-menu-item" data-action="delete-row"><i class="fas fa-trash"></i> Delete Row</div>
+                <div class="context-menu-item" data-action="delete-column"><i class="fas fa-trash"></i> Delete Column</div>
+                <div class="context-menu-divider"></div>
+                <div class="context-menu-item" data-action="format-cell"><i class="fas fa-paint-brush"></i> Format Cells</div>
+                <div class="context-menu-item" data-action="merge-cells"><i class="fas fa-table-cells-large"></i> Merge Cells</div>
+            </div>
+            
+            <div id="tooltip" class="tooltip"></div>
+            
+            <div id="styling-panel" class="styling-panel">
+                <div class="styling-section">
+                    <h4>Text Color</h4>
+                    <div class="styling-options">
+                        <div class="color-option" style="background-color: #000000;"></div>
+                        <div class="color-option" style="background-color: #7F7F7F;"></div>
+                        <div class="color-option" style="background-color: #A80000;"></div>
+                        <div class="color-option" style="background-color: #217346;"></div>
+                        <div class="color-option" style="background-color: #2B579A;"></div>
+                    </div>
+                </div>
+                <div class="styling-section">
+                    <h4>Background Color</h4>
+                    <div class="styling-options">
+                        <div class="color-option" style="background-color: transparent;"></div>
+                        <div class="color-option" style="background-color: #FFF2CC;"></div>
+                        <div class="color-option" style="background-color: #E2EFDA;"></div>
+                        <div class="color-option" style="background-color: #DDEBF7;"></div>
+                        <div class="color-option" style="background-color: #FCE4D6;"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <div id="sheet-tabs">
+            <!-- Sheet tabs will be dynamically added -->
+            <button id="add-sheet" class="button-icon">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        
+        <div class="status-bar">
+            <div id="status-message">Ready</div>
+            <div id="sheet-info">Sheet 1 | 20 rows × 15 columns</div>
+        </div>
+        
+        <!-- Add a floating formatting toolbar for quick access -->
+        <div class="formatting-toolbar" id="formatting-toolbar" style="display: none;">
+            <button class="button-icon" data-format="bold" title="Bold"><i class="fas fa-bold"></i></button>
+            <button class="button-icon" data-format="italic" title="Italic"><i class="fas fa-italic"></i></button>
+            <button class="button-icon" data-format="underline" title="Underline"><i class="fas fa-underline"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="button-icon" data-format="left" title="Align Left"><i class="fas fa-align-left"></i></button>
+            <button class="button-icon" data-format="center" title="Align Center"><i class="fas fa-align-center"></i></button>
+            <button class="button-icon" data-format="right" title="Align Right"><i class="fas fa-align-right"></i></button>
+            <div class="toolbar-divider"></div>
+            <div class="color-button" data-format="text-color" title="Text Color">
+                <i class="fas fa-font"></i>
+                <div class="color-indicator" style="background-color: #000000;"></div>
+            </div>
+            <div class="color-button" data-format="fill-color" title="Fill Color">
+                <i class="fas fa-fill-drip"></i>
+                <div class="color-indicator" style="background-color: transparent;"></div>
+            </div>
+        </div>
+        
+        <!-- Add a find/replace panel -->
+        <div class="find-replace-panel" id="find-replace-panel" style="display: none;">
+            <div class="find-replace-header">
+                <h3>Find & Replace</h3>
+                <button class="close-button"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="find-replace-content">
+                <div class="find-replace-tabs">
+                    <div class="find-replace-tab active" data-tab="find">Find</div>
+                    <div class="find-replace-tab" data-tab="replace">Replace</div>
+                </div>
+                <div class="tab-content" data-content="find">
+                    <div class="form-group">
+                        <input type="text" placeholder="Find what..." id="find-input">
+                    </div>
+                    <div class="form-options">
+                        <label><input type="checkbox" id="find-match-case"> Match case</label>
+                        <label><input type="checkbox" id="find-whole-cell"> Match entire cell contents</label>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="button" id="find-next-btn">Find Next</button>
+                        <button class="button" id="find-all-btn">Find All</button>
+                    </div>
+                </div>
+                <div class="tab-content" data-content="replace" style="display: none;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Find what..." id="replace-find-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Replace with..." id="replace-with-input">
+                    </div>
+                    <div class="form-options">
+                        <label><input type="checkbox" id="replace-match-case"> Match case</label>
+                        <label><input type="checkbox" id="replace-whole-cell"> Match entire cell contents</label>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="button" id="replace-btn">Replace</button>
+                        <button class="button" id="replace-all-btn">Replace All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conditional formatting dialog -->
+        <div class="dialog" id="conditional-format-dialog" style="display: none;">
+            <div class="dialog-header">
+                <h3>Conditional Formatting</h3>
+                <button class="dialog-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="dialog-content">
+                <div class="form-group">
+                    <label>Format cells that are:</label>
+                    <select id="cf-rule-type">
+                        <option value="greaterThan">Greater Than</option>
+                        <option value="lessThan">Less Than</option>
+                        <option value="between">Between</option>
+                        <option value="equal">Equal To</option>
+                        <option value="text">Text Contains</option>
+                        <option value="colorScale">Color Scale</option>
+                    </select>
+                </div>
+                
+                <div class="cf-value-inputs">
+                    <div class="form-group" id="cf-single-value">
+                        <input type="text" id="cf-value" placeholder="Value">
+                    </div>
+                    
+                    <div class="form-group cf-between-values" style="display: none;">
+                        <label>Between:</label>
+                        <div class="between-inputs">
+                            <input type="text" id="cf-min-value" placeholder="Minimum">
+                            <span>and</span>
+                            <input type="text" id="cf-max-value" placeholder="Maximum">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group cf-color-scale" style="display: none;">
+                        <div class="color-scale-inputs">
+                            <div class="color-input">
+                                <label>Minimum:</label>
+                                <input type="color" id="cf-min-color" value="#FFEB84">
+                            </div>
+                            <div class="color-input">
+                                <label>Maximum:</label>
+                                <input type="color" id="cf-max-color" value="#FF8B3D">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Format style:</label>
+                    <div class="format-options">
+                        <div class="format-option">
+                            <label>Background:</label>
+                            <input type="color" id="cf-bg-color" value="#FFEB84">
+                        </div>
+                        <div class="format-option">
+                            <label>Text color:</label>
+                            <input type="color" id="cf-text-color" value="#000000">
+                        </div>
+                        <div class="format-option">
+                            <label><input type="checkbox" id="cf-bold"> Bold</label>
+                        </div>
+                        <div class="format-option">
+                            <label><input type="checkbox" id="cf-italic"> Italic</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dialog-buttons">
+                    <button class="button" id="cf-apply-btn">Apply</button>
+                    <button class="button button-secondary" id="cf-cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+
+    <!-- JavaScript Files - Updated order to ensure proper dependency loading -->
+    <script src="js/utils.js"></script>
+    <script src="js/themes.js"></script>
+    <script src="js/formulas.js"></script>
+    <script src="js/conditional-formatting.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/import-export.js"></script>
+
+    <script src="js/spreadsheet.js"></script>
+    <!-- Load app.js last since it depends on all other scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>

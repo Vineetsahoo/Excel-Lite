@@ -1,0 +1,17 @@
+{
+  "name": "Excel Lite",
+  "short_name": "Excel Lite",
+  "description": "A modern web-based spreadsheet application",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#217346",
+  "icons": [
+    {
+      "src": "./icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

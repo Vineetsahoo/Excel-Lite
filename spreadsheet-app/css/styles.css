@@ -1,0 +1,1476 @@
+:root {
+  /* Modern Microsoft 365 Excel-inspired color palette */
+  --excel-green: #217346;
+  --excel-dark-green: #185a36;
+  --excel-light-green: #e9f5ee;
+  --excel-blue: #2b579a;
+  --excel-light-blue: #e6eff8;
+  --excel-orange: #ed7d31;
+  --excel-yellow: #ffc000;
+  
+  /* Main color variables */
+  --primary-color: var(--excel-green);
+  --secondary-color: var(--excel-blue);
+  --accent-color: var(--excel-orange);
+  --light-color: #ffffff;
+  --dark-color: #212529;
+  --border-color: #d4d4d4;
+  --hover-color: #f3f3f3;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --warning-color: #ff9800;
+  
+  /* Grid dimensions */
+  --grid-cell-width: 100px;
+  --grid-cell-height: 25px;
+  --header-cell-height: 24px;
+  --row-header-width: 40px;
+  
+  /* Animation and effects */
+  --animation-speed: 0.2s;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.15);
+  --shadow-lg: 0 10px 20px rgba(0,0,0,0.20);
+  
+  /* Typography */
+  --font-main: 'Segoe UI', 'Calibri', Roboto, Arial, sans-serif;
+  --font-mono: 'Consolas', 'Courier New', monospace;
+}
+
+/* Reset and Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  line-height: 1.5;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.dark-mode {
+  --light-color: #1e1e1e;
+  --dark-color: #f0f0f0;
+  --border-color: #444;
+  --hover-color: #333;
+  --primary-color: #26865b;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== Header Styling ===== */
+header {
+  background: linear-gradient(to right, var(--primary-color), var(--excel-dark-green));
+  color: white;
+  padding: 0.6rem 1rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  height: 48px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-container h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.button {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button i {
+  font-size: 0.9rem;
+}
+
+/* ===== Dark Mode Toggle ===== */
+.dark-mode-toggle {
+  width: 40px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode-toggle::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-toggle.active {
+  background-color: var(--excel-yellow);
+}
+
+.dark-mode-toggle.active::after {
+  left: 22px;
+  background-color: #333;
+}
+
+/* ===== Ribbon Tabs Styling ===== */
+.ribbon-tabs {
+  display: flex;
+  background: linear-gradient(to bottom, #f8f8f8, #f3f2f1);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.dark-mode .ribbon-tabs {
+  background: linear-gradient(to bottom, #2a2a2a, #252525);
+}
+
+.ribbon-tab {
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ribbon-tab::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.ribbon-tab:hover::before {
+  transform: translateY(0);
+}
+
+.ribbon-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.ribbon-tab:hover::after {
+  width: 100%;
+}
+
+.ribbon-tab.active {
+  color: var(--primary-color);
+}
+
+.ribbon-tab.active::after {
+  width: 100%;
+}
+
+/* ===== Toolbar Styling ===== */
+.toolbar {
+  display: flex;
+  gap: 0.25rem;
+  background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.dark-mode .toolbar {
+  background: linear-gradient(to bottom, #2d2d2d, #252525);
+}
+
+.toolbar-group {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  padding: 0 0.5rem;
+  border-right: 1px solid var(--border-color);
+  height: 32px;
+}
+
+.toolbar-group:last-child {
+  border-right: none;
+}
+
+.button-icon {
+  background: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--dark-color);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-icon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.button-icon:hover::before {
+  transform: scale(1);
+  border-radius: 4px;
+}
+
+.button-icon:active {
+  transform: scale(0.95);
+}
+
+.button-icon.with-text {
+  width: auto;
+  padding: 0 8px;
+  gap: 5px;
+}
+
+.button-icon.with-text span {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.toolbar-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.toolbar-dropdown:hover {
+  background-color: var(--hover-color);
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-color);
+  z-index: 1000;
+  border-radius: 4px;
+  display: none;
+  animation: dropdown-fade 0.2s ease;
+  transform-origin: top center;
+  overflow: hidden;
+}
+
+@keyframes dropdown-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dark-mode .dropdown-content {
+  background-color: #333;
+  border-color: #555;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: var(--excel-light-blue);
+  color: var(--excel-blue);
+}
+
+.dark-mode .dropdown-item:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.toolbar-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Color Dropdowns */
+.color-dropdown {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 5px;
+  gap: 3px;
+  min-width: 120px;
+}
+
+.color-option {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.color-option:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* ===== Formula Bar Styling ===== */
+.formula-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  background: linear-gradient(to bottom, #f9f9f9, #f5f5f5);
+  border-bottom: 1px solid var(--border-color);
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.dark-mode .formula-bar {
+  background: linear-gradient(to bottom, #2d2d2d, #252525);
+}
+
+.cell-address {
+  width: 60px;
+  text-align: center;
+  font-weight: 600;
+  border-right: 1px solid var(--border-color);
+  padding-right: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+}
+
+.fx-label {
+  padding: 0 0.5rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.formula-input {
+  flex-grow: 1;
+  padding: 0.35rem 0.5rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.formula-input:focus {
+  background-color: rgba(0,0,0,0.02);
+}
+
+.dark-mode .formula-input:focus {
+  background-color: rgba(255,255,255,0.05);
+}
+
+/* ===== Spreadsheet Grid Styling ===== */
+main {
+  flex-grow: 1;
+  overflow: auto;
+  position: relative;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.dark-mode main {
+  background-color: #1a1a1a;
+}
+
+#spreadsheet-container {
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  height: fit-content;
+  overflow: auto;
+  max-height: 100%;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease;
+}
+
+#spreadsheet-container:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.dark-mode #spreadsheet-container {
+  background-color: #252525;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#spreadsheet {
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.dark-mode #spreadsheet {
+  background-color: #252525;
+}
+
+#spreadsheet th, #spreadsheet td {
+  border: 1px solid #e0e0e0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.dark-mode #spreadsheet th, .dark-mode #spreadsheet td {
+  border-color: #444;
+}
+
+#spreadsheet th {
+  background: linear-gradient(to bottom, #f8f8f8, #f1f1f1);
+  font-weight: 600;
+  height: var(--header-cell-height);
+  min-width: var(--grid-cell-width);
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  font-size: 0.85rem;
+  color: #555;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.dark-mode #spreadsheet th {
+  background: linear-gradient(to bottom, #333, #2a2a2a);
+  color: #ccc;
+}
+
+#spreadsheet th:hover {
+  background: linear-gradient(to bottom, #f1f1f1, #e9e9e9);
+}
+
+.dark-mode #spreadsheet th:hover {
+  background: linear-gradient(to bottom, #3a3a3a, #333);
+}
+
+.corner-header {
+  background: linear-gradient(to bottom, #f1f1f1, #e9e9e9) !important;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+  z-index: 15 !important;
+}
+
+.dark-mode .corner-header {
+  background: linear-gradient(to bottom, #3a3a3a, #333) !important;
+}
+
+.row-header {
+  background: linear-gradient(to right, #f8f8f8, #f1f1f1);
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+}
+
+.dark-mode .row-header {
+  background: linear-gradient(to right, #333, #2a2a2a);
+}
+
+#spreadsheet td {
+  height: var(--grid-cell-height);
+  min-width: var(--grid-cell-width);
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+#spreadsheet td input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0 4px;
+  background: transparent;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: inherit;
+  outline: none;
+}
+
+.dark-mode #spreadsheet td input {
+  color: #e0e0e0;
+}
+
+#spreadsheet td.selected {
+  outline: 2px solid var(--primary-color);
+  outline-offset: -2px;
+  z-index: 2;
+  box-shadow: 0 0 0 1px rgba(33, 115, 70, 0.3);
+  animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 1px rgba(33, 115, 70, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(33, 115, 70, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(33, 115, 70, 0.3);
+  }
+}
+
+#spreadsheet td.selected-area {
+  background-color: rgba(33, 115, 70, 0.1);
+  animation: selected-cell-glow 2s infinite alternate;
+}
+
+@keyframes selected-cell-glow {
+  from {
+    background-color: rgba(33, 115, 70, 0.08);
+  }
+  to {
+    background-color: rgba(33, 115, 70, 0.15);
+  }
+}
+
+/* Resize handle for columns */
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.resize-handle:hover {
+  background-color: var(--primary-color);
+}
+
+/* Cell content type indicators */
+.cell-number {
+  text-align: right;
+}
+
+.cell-text {
+  text-align: left;
+}
+
+.cell-formula {
+  color: var(--excel-blue);
+}
+
+.cell-error {
+  color: var(--error-color);
+}
+
+.cell-date {
+  color: #7030a0;
+}
+
+/* Conditional formatting highlights */
+.conditional-highlight-low {
+  background-color: rgba(255, 235, 156, 0.5);
+}
+
+.conditional-highlight-medium {
+  background-color: rgba(255, 217, 102, 0.5);
+}
+
+.conditional-highlight-high {
+  background-color: rgba(248, 203, 173, 0.5);
+}
+
+.dark-mode .conditional-highlight-low {
+  background-color: rgba(255, 235, 156, 0.3);
+}
+
+.dark-mode .conditional-highlight-medium {
+  background-color: rgba(255, 217, 102, 0.3);
+}
+
+.dark-mode .conditional-highlight-high {
+  background-color: rgba(248, 203, 173, 0.3);
+}
+
+/* ===== Sheet Tabs ===== */
+#sheet-tabs {
+  display: flex;
+  background: linear-gradient(to bottom, #f3f2f1, #e9e9e9);
+  border-top: 1px solid var(--border-color);
+  height: 32px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.dark-mode #sheet-tabs {
+  background: linear-gradient(to bottom, #2a2a2a, #252525);
+}
+
+.sheet-tab {
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 100px;
+  max-width: 150px;
+  transition: all 0.2s ease;
+  position: relative;
+  font-size: 0.85rem;
+  height: 28px;
+  margin-right: 2px;
+  border-radius: 4px 4px 0 0;
+  background-color: rgba(255,255,255,0.5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dark-mode .sheet-tab {
+  background-color: rgba(255,255,255,0.05);
+}
+
+.sheet-tab span {
+  pointer-events: auto;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sheet-tab::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--primary-color);
+  transition: width 0.2s ease;
+}
+
+.sheet-tab:hover::before {
+  width: 100%;
+}
+
+.sheet-tab.active {
+  background-color: white;
+  font-weight: 500;
+  color: var(--primary-color);
+  border-bottom: none;
+  height: 30px;
+  z-index: 1;
+}
+
+.dark-mode .sheet-tab.active {
+  background-color: #333;
+  color: #4db87d;
+}
+
+.sheet-tab.active::before {
+  width: 100%;
+}
+
+.sheet-close {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  font-size: 0.7rem;
+}
+
+.sheet-tab:hover .sheet-close {
+  opacity: 1;
+}
+
+#add-sheet {
+  background-color: transparent;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary-color);
+  transition: all 0.2s ease;
+  margin-left: 5px;
+}
+
+#add-sheet:hover {
+  background-color: rgba(33, 115, 70, 0.1);
+  transform: rotate(90deg);
+}
+
+/* ===== Status Bar ===== */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 1rem;
+  background-color: #f5f5f5;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.dark-mode .status-bar {
+  background-color: #252525;
+  color: #aaa;
+}
+
+#status-message {
+  display: flex;
+  align-items: center;
+}
+
+#status-message.error {
+  color: var(--error-color);
+}
+
+#status-message.success {
+  color: var(--success-color);
+}
+
+/* ===== Context Menu ===== */
+.context-menu {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  min-width: 180px;
+  overflow: hidden;
+  animation: scale-in 0.15s ease-out;
+  transform-origin: top left;
+  border: 1px solid var(--border-color);
+  display: none;
+}
+
+.context-menu.show {
+  display: block;
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.context-menu-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.15s;
+  font-size: 0.9rem;
+}
+
+.context-menu-item:hover {
+  background-color: var(--excel-light-blue);
+}
+
+.dark-mode .context-menu {
+  background-color: #333;
+  border-color: #555;
+}
+
+.dark-mode .context-menu-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.context-menu-item i {
+  font-size: 14px;
+  width: 18px;
+  color: var(--excel-blue);
+}
+
+.dark-mode .context-menu-item i {
+  color: #6b9fff;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 5px 0;
+}
+
+/* ===== Tooltip ===== */
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  white-space: nowrap;
+  transform: translateY(5px);
+}
+
+.tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* ===== Formula Suggestions ===== */
+.formula-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 60px;
+  width: calc(100% - 60px);
+  background: white;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 0 0 4px 4px;
+}
+
+.dark-mode .formula-suggestions {
+  background: #333;
+  border-color: #555;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.15s ease;
+}
+
+.suggestion-item:hover {
+  background-color: var(--excel-light-blue);
+}
+
+.dark-mode .suggestion-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.suggestion-item strong {
+  color: var(--excel-blue);
+  font-family: var(--font-mono);
+}
+
+.dark-mode .suggestion-item strong {
+  color: #4db6ff;
+}
+
+.suggestion-item small {
+  color: #888;
+  font-size: 0.8em;
+}
+
+.dark-mode .suggestion-item small {
+  color: #aaa;
+}
+
+/* ===== Find & Replace Panel ===== */
+.find-replace-panel {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  width: 320px;
+  z-index: 1000;
+  animation: slide-in-right 0.3s ease;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.dark-mode .find-replace-panel {
+  background: #333;
+  border-color: #555;
+}
+
+.find-replace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: var(--primary-color);
+  color: white;
+}
+
+.find-replace-header h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.close-button:hover {
+  opacity: 1;
+}
+
+.find-replace-content {
+  padding: 15px;
+}
+
+.find-replace-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.find-replace-tab {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.find-replace-tab.active {
+  border-bottom-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input[type="text"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.dark-mode .form-group input[type="text"] {
+  background-color: #444;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.form-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ===== Loading Animation ===== */
+.app-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.3s;
+}
+
+.dark-mode .app-loading {
+  background-color: #1e1e1e;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(33, 115, 70, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== Conditional Formatting Dialog ===== */
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 1000;
+  min-width: 400px;
+  overflow: hidden;
+  animation: dialog-appear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid var(--border-color);
+}
+
+@keyframes dialog-appear {
+  from {
+    transform: translate(-50%, -60%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.dark-mode .dialog {
+  background: #333;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--primary-color);
+  color: white;
+}
+
+.dialog-header h3 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.dialog-close {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.dialog-close:hover {
+  opacity: 1;
+}
+
+.dialog-content {
+  padding: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background-color: white;
+  transition: border-color 0.2s;
+}
+
+.form-group select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.dark-mode .form-group select {
+  background-color: #444;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+.between-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.between-inputs span {
+  font-size: 0.9rem;
+}
+
+.color-scale-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.color-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.color-input label {
+  font-size: 0.85rem;
+}
+
+.color-input input[type="color"] {
+  width: 60px;
+  height: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+}
+
+.format-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.format-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.format-option label {
+  margin-bottom: 0;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-secondary {
+  background-color: #f5f5f5;
+  color: var(--dark-color);
+  border: 1px solid var(--border-color);
+}
+
+.button-secondary:hover {
+  background-color: #e9e9e9;
+}
+
+.dark-mode .button-secondary {
+  background-color: #444;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+.dark-mode .button-secondary:hover {
+  background-color: #555;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .ribbon-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+  
+  .toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0.5rem 0;
+  }
+  
+  .toolbar-group {
+    flex-shrink: 0;
+  }
+  
+  .formula-bar {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  
+  .cell-address {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .formula-input {
+    width: 100%;
+  }
+}
+
+/* Custom scrollbars for modern browsers */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+  border: 2px solid #f1f1f1;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #555;
+  border-color: #2a2a2a;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Animation for conditional formatting */
+@keyframes highlight-pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.cell-highlight-animation {
+  animation: highlight-pulse 2s infinite;
+}
+
+/* Welcome dialog styling */
+.welcome-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(3px);
+  animation: fade-in 0.3s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.welcome-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 500px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  animation: welcome-slide-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes welcome-slide-up {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.dark-mode .welcome-content {
+  background: #333;
+  color: #e0e0e0;
+}
+
+.welcome-content h2 {
+  color: var(--primary-color);
+  margin-top: 0;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.welcome-content ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.welcome-content li {
+  margin-bottom: 8px;
+}
+
+#welcome-close {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 15px;
+  transition: all 0.2s ease;
+}
+
+#welcome-close:hover {
+  background-color: var(--excel-dark-green);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+#welcome-close:active {
+  transform: translateY(0);
+}
