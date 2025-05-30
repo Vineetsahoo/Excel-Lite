@@ -1,113 +1,178 @@
-# Excel Lite: Modern Spreadsheet Application
+# 📊 Excel Lite – A Web-Based Spreadsheet Application
 
-Excel Lite is a comprehensive web-based spreadsheet application that replicates the core functionality and user interface of Microsoft Excel. Built with modern web technologies, it provides a familiar environment for data manipulation, calculation, and visualization.
+> *"A nimble reimagining of the spreadsheet, forged in the browser, faithful to function, and light in form."*
 
+**Excel Lite** is a modern, responsive, and offline-capable spreadsheet web application that emulates key features of Microsoft Excel — all within your browser, with zero installation. With robust formula support, multi-sheet functionality, CSV import/export, charting, conditional formatting, and theme toggling, it serves as a powerful tool for data entry, analysis, and visualization.
 
-## 🚀 Features
+---
 
-- **Excel-like UI**: Ribbon interface, sheets, cell formatting, and familiar navigation
-- **Formula Support**: Implements common Excel formulas (SUM, AVERAGE, COUNT, etc.)
-- **Multi-sheet Management**: Create, rename, delete, and navigate between sheets
-- **Cell Formatting**: Apply text formatting, colors, borders, and alignment
-- **Import/Export**: Support for CSV import and export
-- **Data Visualization**: Create and customize charts from your data
-- **Conditional Formatting**: Highlight cells based on their values
-- **Dark Mode**: Toggle between light and dark themes for comfortable viewing
-- **Responsive Design**: Works on desktop and tablet devices
-- **Offline Support**: Progressive Web App capabilities for offline use
-- **Keyboard Shortcuts**: Familiar Excel shortcuts for improved productivity
+## ✨ Features
 
-## 🛠️ Technical Implementation
+- 🧮 **Formula Engine**: Supports Excel-style formulas like `SUM`, `AVERAGE`, `COUNT`, and more.
+- 📊 **Charting**: Visualize data dynamically using built-in chart rendering.
+- 🎨 **Conditional Formatting**: Automatically style cells based on their values.
+- 📁 **CSV Import/Export**: Easily load and save data using standard CSV format.
+- 📄 **Multiple Sheets**: Create and manage several sheets in a single workspace.
+- 🌗 **Theming**: Toggle between dark and light mode for eye comfort.
+- ⚙️ **Offline Capability (PWA)**: Works even without internet once loaded.
+- 📱 **Responsive UI**: Optimized for desktops, tablets, and mobile devices.
 
-Excel Lite is built with vanilla JavaScript, HTML, and CSS, focusing on modern standards and best practices:
+---
 
-- **Component-based Architecture**: Modular code organization for maintainability
-- **Custom Formula Engine**: JavaScript-based formula parser and evaluator
-- **Cell Reference System**: A1-style cell referencing with dependency tracking
-- **Theming System**: CSS variables and theme management for consistent styling
-- **Service Worker**: Offline capabilities and caching
-- **Local Storage**: Persistent storage for user preferences and data
+## 🛠️ Built With
 
-## 🔧 Installation & Development
+- **HTML5** – Structure of the application
+- **CSS3** – Theming, responsive layout, and UI styling
+- **JavaScript (ES6)** – Functional logic and user interaction
+- **Service Workers + manifest.json** – Offline support via Progressive Web App architecture
+- **Canvas API / Charting** – For visual data representation
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Modern web browser (Chrome, Firefox, Edge, Safari)
-- Node.js and npm (for development)
+- A modern web browser (Chrome, Firefox, Edge, Safari)
+- No additional dependencies — it's a pure frontend application
 
-### Setup
+### Installation
 
-1. Clone the repository:
-   ```
+1. **Clone the Repository**
+   ```bash
    git clone https://github.com/Vineetsahoo/Excel-Lite.git
-   cd excel-lite
    ```
 
-2. Open `index.html` in your browser or use a local server:
+2. **Navigate into the Project Directory**
+   ```bash
+   cd Excel-Lite/spreadsheet-app
    ```
-   npx serve
+
+3. **Launch the App**
+   - Simply open `index.html` in your browser.
+   
+   Or, to enable full PWA functionality, you may serve it via a local server (recommended):
+   ```bash
+   npx serve .
    ```
 
-### Development
+---
 
-The project follows a modular structure:
+## 📂 Project Structure
 
-- `index.html` - Main application entry point
-- `css/styles.css` - Styles for the application
-- `js/` - JavaScript modules:
-  - `app.js` - Application initialization
-  - `spreadsheet.js` - Core spreadsheet functionality
-  - `formulas.js` - Formula parsing and evaluation
-  - `conditional-formatting.js` - Cell formatting based on values
-  - `charts.js` - Data visualization capabilities
-  - `import-export.js` - File operations
-  - `utils.js` - Utility functions
-  - `themes.js` - Theme management
+```
+Excel-Lite/
+├── README.md
+└── spreadsheet-app/
+    ├── index.html                  # Main HTML file
+    ├── manifest.json               # PWA manifest for install/offline
+    ├── service-worker.js           # Enables offline use
+    ├── css/
+    │   └── styles.css              # Main styles and UI components
+    ├── data/
+    │   └── sample.csv              # Sample data for import testing
+    ├── js/
+    │   ├── app.js                  # App initialization logic
+    │   ├── charts.js               # Charting engine
+    │   ├── conditional-formatting.js  # Conditional formatting logic
+    │   ├── formulas.js             # Core formula evaluation engine
+    │   ├── import-export.js        # Import/export functionality
+    │   ├── spreadsheet.js          # Spreadsheet logic and cell/grid handling
+    │   ├── themes.js               # Dark/light theme switching
+    │   └── utils.js                # Helper and utility functions
+    └── icons/
+        └── icon-72x72.png          # PWA icons (likely more sizes)
+```
+
+---
+
+## 📌 Usage
+
+1. Launch the app in your browser (`index.html`).
+
+2. Click on cells to enter data.
+
+3. Use the toolbar or shortcuts to:
+   - Apply formulas (`=SUM(A1:A5)`)
+   - Change themes
+   - Apply formatting
+   - Import/export CSV files
+   - Create charts
+   - Highlight cells conditionally
+
+4. Work across multiple sheets using the tab interface.
+
+5. Enjoy offline use via PWA support (you can even install it on mobile/desktop!).
+
+---
+
+## 💡 Key Functionality
+
+### Formula Support
+- Basic arithmetic: `+`, `-`, `*`, `/`
+- Common functions: `SUM()`, `AVERAGE()`, `COUNT()`, `MAX()`, `MIN()`
+- Cell references: `A1`, `B2:B10`
+
+### Chart Types
+- Bar charts
+- Line charts
+- Pie charts
+- Dynamic data visualization
+
+### Import/Export
+- CSV file import
+- CSV file export
+- Data preservation across sessions
+
+---
 
 ## 🤝 Contributing
-Contributions are welcome! Feel free to fork the repository and submit pull requests.
+
+Contributions are welcome!
 
 1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add some amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
 5. Open a Pull Request
 
-## 🌟 Usage Examples
-
-### Basic Cell Editing
-Click on any cell and start typing to enter data. Press Enter to confirm or navigate to another cell.
-
-### Using Formulas
-Start with an equals sign (=) followed by your formula, e.g., `=SUM(A1:A10)` or `=AVERAGE(B1:B5)`.
-
-Supported formulas include:
-- SUM
-- AVERAGE
-- COUNT
-- MAX
-- MIN
-- IF
-- CONCATENATE
-
-### Formatting Cells
-Select a cell or range, then use the toolbar to apply formatting such as:
-- Font style (bold, italic, underline)
-- Text color and background color
-- Text alignment
-- Number formats
-
-### Working with Sheets
-Use the sheet tabs at the bottom to:
-- Switch between sheets
-- Create new sheets (+ button)
-- Delete sheets (× button)
-- Rename sheets (double-click tab)
+---
 
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 👏 Acknowledgments
-- Inspired by the functionality and design of Microsoft Excel
-- Uses Font Awesome for icons
-- Special thanks to all contributors who have helped improve this project
+This project is licensed under the MIT License.
+
+---
+
+## 🙏 Acknowledgments
+
+- Inspired by the elegance and utility of Microsoft Excel.
+- Thanks to the open-source community and PWA pioneers for their tools and guidance.
+
+---
+
+## 📞 Contact
+
+For any questions or suggestions, feel free to reach out:
+
+- GitHub: [@Vineetsahoo](https://github.com/Vineetsahoo)
+- Project Link: [Excel-Lite](https://github.com/Vineetsahoo/Excel-Lite)
+
+---
+
+## 🔧 Technical Notes
+
+### PWA Features
+- Installable on desktop and mobile devices
+- Offline functionality via service workers
+- App-like experience with manifest.json
+
+### Browser Compatibility
+- Chrome 60+
+- Firefox 55+
+- Safari 12+
+- Edge 79+
+
+---
+
+*Made with 💻 and ☕ for spreadsheet enthusiasts who value simplicity and power.*
