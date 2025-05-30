@@ -47,7 +47,150 @@ document.addEventListener('DOMContentLoaded', () => {
         showWelcomeDialog();
         localStorage.setItem('excel-lite-welcomed', 'true');
     }
+    
+    // Add scroll shadow effects to spreadsheet container
+    addScrollShadowEffects();
 });
+
+/**
+ * Add shadow effects when scrolling the spreadsheet container
+ * This gives a more modern look and better visual cues
+ */
+function addScrollShadowEffects() {
+    const spreadsheetContainer = document.getElementById('spreadsheet-container');
+    
+    if (!spreadsheetContainer) return;
+    
+    // Add shadow effects on scroll
+    spreadsheetContainer.addEventListener('scroll', function() {
+        // Add shadow classes based on scroll position
+        const hasHorizontalScroll = this.scrollWidth > this.clientWidth;
+        const hasVerticalScroll = this.scrollHeight > this.clientHeight;
+        
+        // Add/remove shadow classes for top
+        if (this.scrollTop > 10) {
+            this.classList.add('shadow-top');
+        } else {
+            this.classList.remove('shadow-top');
+        }
+        
+        // Add/remove shadow classes for bottom
+        if (hasVerticalScroll && (this.scrollHeight - this.scrollTop - this.clientHeight) > 10) {
+            this.classList.add('shadow-bottom');
+        } else {
+            this.classList.remove('shadow-bottom');
+        }
+        
+        // Add/remove shadow classes for left
+        if (this.scrollLeft > 10) {
+            this.classList.add('shadow-left');
+        } else {
+            this.classList.remove('shadow-left');
+        }
+        
+        // Add/remove shadow classes for right
+        if (hasHorizontalScroll && (this.scrollWidth - this.scrollLeft - this.clientWidth) > 10) {
+            this.classList.add('shadow-right');
+        } else {
+            this.classList.remove('shadow-right');
+        }
+    });
+    
+    // Trigger initial scroll event to set shadows properly
+    spreadsheetContainer.dispatchEvent(new Event('scroll'));
+}
+
+/**
+ * Excel Lite - Main Application
+ * Initialize and connect all components
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    // Add loading indicator with modern animation
+    showLoadingIndicator();
+    
+    // Initialize spreadsheet with responsive sizing
+    const spreadsheet = new Spreadsheet({
+        rows: 100,
+        cols: 26,
+        container: document.getElementById('spreadsheet-container')
+    });
+    
+    // Initialize theme manager with enhanced UI
+    const themeManager = new ThemeManager();
+    window.themeManager = themeManager;
+    
+    // Apply default theme with smooth transition
+    document.body.classList.add('theme-transition');
+    setTimeout(() => {
+        document.body.classList.remove('theme-transition');
+    }, 1000);
+    
+    // Initialize formula engine with modern syntax highlighting
+    const formulaEngine = new FormulaEngine(spreadsheet);
+    spreadsheet.setFormulaEngine(formulaEngine);
+    
+    // Initialize conditional formatting manager with enhanced visuals
+    const conditionalFormatManager = new ConditionalFormatManager(spreadsheet);
+    spreadsheet.setConditionalFormatManager(conditionalFormatManager);
+    
+    // Initialize chart manager with modern chart styles
+    const chartManager = new ChartManager(spreadsheet);
+    spreadsheet.setChartManager(chartManager);
+    
+    // Initialize file manager with progress indicators
+    const fileManager = new FileManager(spreadsheet);
+    
+    // Add to window for debugging
+    window.spreadsheet = spreadsheet;
+    window.fileManager = fileManager;
+    
+    // Set up event listeners with improved feedback
+    setupEventListeners(spreadsheet, fileManager, themeManager);
+    
+    // Hide loading indicator with fade-out animation
+    setTimeout(() => {
+        hideLoadingIndicator();
+    }, 500);
+    
+    // Show welcome dialog for first-time users with modern design
+    if (!localStorage.getItem('excel-lite-welcomed')) {
+        showModernWelcomeDialog();
+        localStorage.setItem('excel-lite-welcomed', 'true');
+    }
+    
+    // Add scroll shadow effects to spreadsheet container
+    addScrollShadowEffects();
+});
+
+// Helper function to show a visually appealing loading indicator
+function showLoadingIndicator() {
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'app-loading';
+    loadingIndicator.id = 'app-loading';
+    loadingIndicator.innerHTML = `
+        <div class="loading-content">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+            </div>
+            <div class="loading-text">
+                <h3>Loading Excel Lite</h3>
+                <p>Preparing your spreadsheet experience...</p>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(loadingIndicator);
+}
+
+// Helper function to hide the loading indicator with animation
+function hideLoadingIndicator() {
+    const loadingIndicator = document.getElementById('app-loading');
+    if (loadingIndicator) {
+        loadingIndicator.classList.add('fade-out');
+        setTimeout(() => {
+            loadingIndicator.remove();
+        }, 500);
+    }
+}
 
 /**
  * Set up application event listeners
@@ -200,7 +343,7 @@ function showStatusMessage(message, type = 'info') {
 /**
  * Show welcome dialog for first-time users
  */
-function showWelcomeDialog() {
+function showModernWelcomeDialog() {
     const dialog = document.createElement('div');
     dialog.className = 'welcome-dialog';
     

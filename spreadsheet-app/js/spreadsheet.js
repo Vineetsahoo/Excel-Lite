@@ -161,15 +161,32 @@ class Spreadsheet {
         for (let i = 0; i < sheet.data[0].length; i++) {
             const colHeader = document.createElement('th');
             colHeader.textContent = this.getColumnLabel(i);
+            colHeader.className = 'column-header';
             
             // Apply custom width if defined
             if (sheet.columnWidths[i]) {
                 colHeader.style.width = sheet.columnWidths[i] + 'px';
             }
             
-            // Add resize handle
+            // Add modern header styling with hover effect
+            colHeader.innerHTML = `
+                <div class="header-content">
+                    <span>${this.getColumnLabel(i)}</span>
+                    <div class="header-actions">
+                        <button class="header-sort-btn" title="Sort" data-col="${i}">
+                            <i class="fas fa-sort"></i>
+                        </button>
+                        <button class="header-filter-btn" title="Filter" data-col="${i}">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add resize handle with improved styling
             const resizeHandle = document.createElement('div');
             resizeHandle.className = 'resize-handle';
+            resizeHandle.innerHTML = '<div class="resize-handle-line"></div>';
             resizeHandle.addEventListener('mousedown', this.handleColumnResize.bind(this, i));
             colHeader.appendChild(resizeHandle);
             

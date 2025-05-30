@@ -4,6 +4,10 @@
 
 **Excel Lite** is a modern, responsive, and offline-capable spreadsheet web application that emulates key features of Microsoft Excel — all within your browser, with zero installation. With robust formula support, multi-sheet functionality, CSV import/export, charting, conditional formatting, and theme toggling, it serves as a powerful tool for data entry, analysis, and visualization.
 
+<div align="center">
+  <img src="spreadsheet-app/screenshots/excel-lite-preview.png" alt="Excel Lite Preview" width="80%" style="border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+</div>
+
 ---
 
 ## ✨ Features
@@ -13,9 +17,16 @@
 - 🎨 **Conditional Formatting**: Automatically style cells based on their values.
 - 📁 **CSV Import/Export**: Easily load and save data using standard CSV format.
 - 📄 **Multiple Sheets**: Create and manage several sheets in a single workspace.
-- 🌗 **Theming**: Toggle between dark and light mode for eye comfort.
-- ⚙️ **Offline Capability (PWA)**: Works even without internet once loaded.
-- 📱 **Responsive UI**: Optimized for desktops, tablets, and mobile devices.
+- 🌗 **Modern Theming**: Choose from 12+ professionally designed themes including light, dark, and high contrast options.
+- 🔄 **Real-time Calculations**: Formulas update automatically as cell values change.
+- ⚡ **Keyboard Shortcuts**: Boost productivity with familiar Excel keyboard shortcuts.
+- 📱 **Responsive Design**: Works seamlessly on desktop, tablet and mobile devices.
+- 🔍 **Search & Replace**: Find and replace data across your spreadsheet.
+- 🎯 **Cell Formatting**: Apply text styles, colors, borders, and number formats.
+- 🔒 **Data Validation**: Set rules for what data can be entered in cells.
+- 📋 **Copy & Paste**: Easily transfer data within or between sheets.
+- 💾 **Offline Capability**: Use the app even without internet connection (PWA).
+- 🔧 **Customizable UI**: Personalize your workspace to match your workflow.
 
 ---
 

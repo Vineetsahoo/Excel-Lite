@@ -13,10 +13,10 @@ class ThemeManager {
           accent: '#ed7d31', // Excel orange
           background: '#ffffff',
           text: '#212529',
-          border: '#d4d4d4',
-          hover: '#f3f3f3',
+          border: '#e0e0e0', // Lighter border for modern look
+          hover: '#f5f5f5',
           cellBackground: '#ffffff',
-          headerBackground: '#f3f2f1',
+          headerBackground: '#f8f8f8', // Lighter header for modern look
           toolbarBackground: '#ffffff'
         }
       },
@@ -65,7 +65,7 @@ class ThemeManager {
           toolbarBackground: '#f0f0f0'
         }
       },
-      // Add new modern themes
+      // Updated modern themes
       modern: {
         name: 'Modern',
         colors: {
@@ -74,8 +74,8 @@ class ThemeManager {
           accent: '#ff6f61', // Coral accent
           background: '#ffffff',
           text: '#202020',
-          border: '#e0e0e0',
-          hover: '#f5f5f5',
+          border: '#e8e8e8', // Lighter border for modern look
+          hover: '#f7f7f7',
           cellBackground: '#ffffff',
           headerBackground: '#fafafa',
           toolbarBackground: '#f8f8f8'
@@ -124,6 +124,67 @@ class ThemeManager {
           cellBackground: '#000000',
           headerBackground: '#000000',
           toolbarBackground: '#000000'
+        }
+      },
+      // Add new contemporary themes
+      fluent: {
+        name: 'Fluent Design',
+        colors: {
+          primary: '#0078d7', // Microsoft blue
+          secondary: '#107c10', // Microsoft green
+          accent: '#ffb900', // Microsoft yellow
+          background: '#fafafa',
+          text: '#323130',
+          border: '#edebe9',
+          hover: '#f3f2f1',
+          cellBackground: '#ffffff',
+          headerBackground: '#f5f5f5',
+          toolbarBackground: '#fafafa'
+        }
+      },
+      material: {
+        name: 'Material',
+        colors: {
+          primary: '#6200ee', // Material purple
+          secondary: '#03dac6', // Material teal
+          accent: '#ff4081', // Material pink
+          background: '#ffffff',
+          text: '#121212',
+          border: '#e0e0e0',
+          hover: '#f5f5f5',
+          cellBackground: '#ffffff',
+          headerBackground: '#f5f5f5',
+          toolbarBackground: '#fafafa'
+        }
+      },
+      nord: {
+        name: 'Nord',
+        colors: {
+          primary: '#5e81ac', // Nord blue
+          secondary: '#81a1c1', // Nord light blue
+          accent: '#ebcb8b', // Nord yellow
+          background: '#eceff4',
+          text: '#2e3440',
+          border: '#d8dee9',
+          hover: '#e5e9f0',
+          cellBackground: '#ffffff',
+          headerBackground: '#e5e9f0',
+          toolbarBackground: '#eceff4'
+        }
+      },
+      nordDark: {
+        name: 'Nord Dark',
+        colors: {
+          primary: '#88c0d0', // Nord cyan
+          secondary: '#81a1c1', // Nord light blue
+          accent: '#ebcb8b', // Nord yellow
+          background: '#2e3440',
+          text: '#eceff4',
+          border: '#3b4252',
+          hover: '#434c5e',
+          cellBackground: '#3b4252',
+          headerBackground: '#434c5e',
+          toolbarBackground: '#3b4252'
         }
       }
     };

@@ -14,29 +14,60 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add Google Fonts for improved typography -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="icons/icon-72x72.png">
 </head>
 <body>
-    <!-- Remove loading indicator -->
-    <!-- <div class="app-loading" id="app-loading">
-        <div class="spinner"></div>
-    </div> -->
-
     <div id="app">
         <header>
             <div class="logo-container">
                 <i class="fas fa-table-cells logo-icon"></i>
                 <h1>Excel Lite</h1>
+                <!-- Add version badge -->
+                <span class="version-badge">v1.2</span>
             </div>
             <div class="header-actions">
-                <button id="import-csv" class="button">
-                    <i class="fas fa-file-import"></i> Import
+                <!-- Add modern dropdown for file operations -->
+                <div class="file-dropdown">
+                    <button class="button">
+                        <i class="fas fa-file"></i> File <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item" id="new-file">
+                            <i class="fas fa-file"></i> New
+                        </button>
+                        <button class="dropdown-item" id="open-file">
+                            <i class="fas fa-folder-open"></i> Open
+                        </button>
+                        <button class="dropdown-item" id="save-file">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" id="import-csv">
+                            <i class="fas fa-file-import"></i> Import
+                        </button>
+                        <button class="dropdown-item" id="export-csv">
+                            <i class="fas fa-file-export"></i> Export
+                        </button>
+                    </div>
+                </div>
+                <!-- Theme selector button with visual indicator -->
+                <div class="theme-selector">
+                    <button class="button">
+                        <i class="fas fa-palette"></i> Theme
+                    </button>
+                </div>
+                <!-- Enhanced dark mode toggle with tooltip -->
+                <div id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle dark mode">
+                    <div class="toggle-icon light"><i class="fas fa-sun"></i></div>
+                    <div class="toggle-icon dark"><i class="fas fa-moon"></i></div>
+                </div>
+                <!-- User profile or settings button -->
+                <button class="profile-button">
+                    <i class="fas fa-user-circle"></i>
                 </button>
-                <button id="export-csv" class="button">
-                    <i class="fas fa-file-export"></i> Export
-                </button>
-                <div id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle dark mode"></div>
             </div>
         </header>
         
